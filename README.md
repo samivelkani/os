@@ -32,7 +32,7 @@ Version 1.0 is done when:
 
 ## Status
 
-**Lesson 1 of 38 is done: the tools are set up.** Nothing boots yet.
+**Lesson 2 of 38 is done:** a 512-byte boot sector, written in assembly, prints a letter on the screen. The real kernel starts in lesson 5.
 
 The [roadmap](docs/roadmap.md) lists every lesson and what each one adds.
 

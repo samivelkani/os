@@ -34,13 +34,16 @@ os/
 ├── .gitattributes           store text files with Unix line endings
 ├── .vscode/
 │   └── settings.json        editor settings: new files get Unix line endings
+├── warmup/                  the first lessons only, not part of the OS
+│   └── boot.asm             the 512-byte boot sector: prints A, then stops
 └── docs/
     ├── README.md            start here: how the lessons work
     ├── roadmap.md           every planned lesson
     ├── architecture.md      this page
     ├── glossary.md          every new word, in simple terms
     └── lessons/
-        └── 01-setup.md      lesson 1: setting up the tools
+        ├── 01-setup.md      lesson 1: setting up the tools
+        └── 02-first-boot-sector.md   lesson 2: the first boot sector
 ```
 
 ## Planned files
@@ -53,7 +56,6 @@ os/
 │                                     flags.mk kernel.mk user.mk image.mk run.mk
 ├── warmup/                           the first lessons only, not part of the OS
 │   ├── Makefile                      build and run the boot sector                  (L04)
-│   ├── boot.asm                      the 512-byte boot sector                       (L02)
 │   └── print.asm                     print a string using the BIOS                  (L03)
 ├── third_party/                      other people's code, each with its license
 │   ├── limine/limine.h               how we ask Limine for things                   (L06)

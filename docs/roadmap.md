@@ -11,7 +11,7 @@ Before the real kernel, we write a tiny program in pure assembly that the comput
 | # | Lesson | What you'll see | Status |
 |---|---|---|---|
 | 1 | [Setting up the tools](lessons/01-setup.md) | A QEMU window saying "No bootable device" | done |
-| 2 | The first boot sector | The letter `A` on the screen | |
+| 2 | [The first boot sector](lessons/02-first-boot-sector.md) | The letter `A` on the screen | done |
 | 3 | Strings, loops and the stack | "Hello from the boot sector" | |
 | 4 | The first Makefile | One command, `make run`, builds and starts it | |
 

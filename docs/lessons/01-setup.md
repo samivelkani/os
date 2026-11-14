@@ -204,15 +204,15 @@ Close the window to stop it. If QEMU has taken over your mouse, press `Ctrl+Alt+
 
 In lesson 2, we'll write those 512 bytes ourselves.
 
-## Things that went wrong
+## Common problems
 
-- **`wsl` opened the wrong Linux.** Docker Desktop was installed, and its own small Linux was the WSL default, so `wsl` opened that instead of Ubuntu. `wsl --set-default Ubuntu-24.04` fixed it (step 2).
-- **The Makefile was named `MakeFile`.** `make` only looks for a file named exactly `Makefile`, `makefile` or `GNUmakefile`. On Windows it would have worked by luck, because Windows treats capital and small letters in file names as the same. On Linux or a Mac it doesn't, and anyone who downloaded the project would get "no makefile found". Renaming it to `Makefile` fixed it.
-- **A few mix-ups while reading about the tools:**
-  - *"lld stands for low level design."* It doesn't. It's the linker from the LLVM project, the same project clang comes from.
-  - *"The compiler removes the headers."* It removes comments, but `#include` does the opposite of removing. It copies the whole header file in, so the compiler knows what the other files offer.
-  - *"nasm is the last step, after clang."* They work side by side. Each one turns its own files into `.o` files, and then the linker joins all of them.
-  - *"make connects the files together."* make only runs commands in the right order. Connecting the pieces is the linker's job.
+- **`wsl` opens the wrong Linux.** Programs like Docker Desktop install their own small Linux, and it can end up as the WSL default. `wsl --set-default Ubuntu-24.04` fixes it (step 2).
+- **`make` says `No targets specified and no makefile found`.** The file must be named exactly `Makefile` (or `makefile`, or `GNUmakefile`). A file called `MakeFile` might seem to work on Windows, because Windows treats capital and small letters in file names as the same. On Linux and on a Mac it doesn't, so anyone who downloads the project gets this error.
+- **Easy things to mix up** when you read about the tools elsewhere:
+  - *lld* doesn't stand for "low level design". It's the linker from the LLVM project, the same project clang comes from.
+  - The preprocessor removes comments, but it doesn't remove headers. `#include` does the opposite: it copies the whole header file in, so the compiler knows what the other files offer.
+  - nasm doesn't run after clang. They work side by side. Each one turns its own files into `.o` files, and then the linker joins all of them.
+  - make doesn't connect the files together. It only runs commands in the right order, and connecting the pieces is the linker's job.
 
 ## Try this
 
