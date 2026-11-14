@@ -1,0 +1,11 @@
+# Every text file is saved with Unix line endings (LF)
+
+* text=auto eol=lf
+
+
+# Binary files that should not be changed from git
+
+*.bin binary
+*.png binary
+*.jpg binary
+*.iso binary

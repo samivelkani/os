@@ -1,0 +1,43 @@
+# The lessons
+
+This folder is a course. It follows the OS while it gets built, from an empty folder to a working shell, one small step at a time.
+
+## Who it's for
+
+You can already program in some language, maybe TypeScript, Dart, Python or Java, but you've never looked at what happens below it. You don't need to know assembly, more than basic C++, or how a CPU works. Every lesson explains the new words it uses, and the [glossary](glossary.md) keeps all of them in one place.
+
+## How to follow along
+
+Read a lesson, then type the code yourself instead of copying it. It's slower, but that's where the learning happens, because you notice every line. Run it, check that you see what the lesson says you should see, then try the small experiments at the end.
+
+Every lesson ends with something you can see: a letter on the screen, a line in the terminal, a counter that ticks. If something doesn't work, look at "Things that went wrong". It lists the real mistakes made while the lesson was being built.
+
+## What a lesson looks like
+
+| Section | What's in it |
+|---|---|
+| Goal | One sentence: what the lesson builds |
+| What you'll see | The result, when everything works |
+| New words | Short meanings of the terms the lesson introduces |
+| The idea | How it works, in plain words, before any code |
+| Build it | The files to create, with every line explained |
+| Run it | The commands to type |
+| What just happened | The same story again, step by step, now that you've seen it run |
+| Things that went wrong | Real mistakes from building the lesson, and how they were fixed |
+| Try this | Small changes to make, and what to expect |
+
+Lesson 1 is only setup, so its "Build it" section is called "Set it up".
+
+## Lessons
+
+| # | Lesson | Status |
+|---|---|---|
+| 1 | [Setting up the tools](lessons/01-setup.md) | done |
+
+The [roadmap](roadmap.md) shows every planned lesson. Each one appears here once it's written.
+
+## Other pages
+
+- [Roadmap](roadmap.md): every planned lesson, grouped into phases
+- [Architecture](architecture.md): every file in the project and its one job
+- [Glossary](glossary.md): every new word, in simple terms
