@@ -32,7 +32,7 @@ Version 1.0 is done when:
 
 ## Status
 
-**Lesson 3 of 38 is done:** a 512-byte boot sector, written in assembly, prints a sentence on the screen with a loop, a function and its own stack. The real kernel starts in lesson 5.
+**Lesson 4 of 38 is done:** a 512-byte boot sector, written in assembly, prints a sentence on the screen with a loop, a function and its own stack, and one command, `make run`, builds it and starts it in QEMU. The real kernel starts in lesson 5.
 
 The [roadmap](docs/roadmap.md) lists every lesson and what each one adds.
 
@@ -96,6 +96,8 @@ These commands arrive as the lessons add them:
 | `make clean` | delete everything that was built | 5 |
 | `make run` | build, then start the OS in QEMU | 6 |
 | `make debug` | start QEMU paused, waiting for GDB | 11 |
+
+The warm-up boot sector from lessons 2 to 4 has its own small Makefile. From the project folder, `make -C warmup run` builds it and starts it.
 
 ## Project layout
 

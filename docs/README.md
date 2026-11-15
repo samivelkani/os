@@ -35,6 +35,7 @@ Lesson 1 is only setup, so its "Build it" section is called "Set it up".
 | 1 | [Setting up the tools](lessons/01-setup.md) | done |
 | 2 | [The first boot sector](lessons/02-first-boot-sector.md) | done |
 | 3 | [Strings, loops and the stack](lessons/03-strings-loops-stack.md) | done |
+| 4 | [The first Makefile](lessons/04-first-makefile.md) | done |
 
 The [roadmap](roadmap.md) shows every planned lesson. Each one appears here once it's written.
 

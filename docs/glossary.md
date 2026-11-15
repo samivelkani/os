@@ -10,6 +10,8 @@ Every new word from the lessons, in simple terms. The number in brackets is the 
 
 **Assembly language** (1): a way to write machine code with short names instead of numbers. `hlt` means "stop the CPU until something happens", and the assembler turns it into the single byte `F4`.
 
+**Automatic variable** (4): a short name that make fills in for each rule. `$@` is the rule's target, `$<` is its first prerequisite, and `$^` is all of its prerequisites.
+
 **Binary file** (1): a file that isn't text, like a picture or a program. Its bytes must be kept exactly as they are.
 
 **BIOS** (1): the older kind of firmware in PCs. It runs first when the computer turns on, and its last job is to find something to boot. It also offers small services, like printing a character, that code can call with `int`. QEMU uses an open-source BIOS called SeaBIOS.
@@ -37,6 +39,8 @@ Every new word from the lessons, in simple terms. The number in brackets is the 
 **Distribution** (1): a kernel plus a large bundle of programs, packaged together so you can install them as one system. Ubuntu is a Linux distribution.
 
 **Emulator** (1): a program that pretends to be a whole computer in software. We use QEMU.
+
+**Environment variable** (4): a named value that every program gets from the program that started it, usually the shell. `PATH` is one: the list of folders where the shell looks for programs. Type `echo $PATH` to see it.
 
 **Firmware** (1): the small program built into a computer that runs first when you turn it on. BIOS and UEFI are the two kinds on PCs.
 
@@ -68,17 +72,27 @@ Every new word from the lessons, in simple terms. The number in brackets is the 
 
 **Machine code** (1): the bytes a CPU actually runs. Every other language gets turned into this in the end.
 
+**Make and Makefile** (4): make is a program that runs build commands, and only the ones that are needed. It reads its instructions from a file called `Makefile` in the folder it runs in.
+
 **Object file** (1): the output of compiling or assembling one source file, ending in `.o`. It holds machine code, plus notes about what it still needs from other files.
 
 **Operating system** (1): the software that sits between programs and the hardware. It shares out the CPU and memory, hides the details of each device, and keeps programs from breaking each other.
 
+**Phony target** (4): a target that names a job instead of a file, like `run` or `clean`. Listing it after `.PHONY:` tells make not to look for a file with that name.
+
 **Preprocessor** (1): the first step inside the compiler. It removes comments and copies in the files named by `#include`.
+
+**Prerequisite** (4): a file that a target is built from. If a prerequisite is newer than the target, make builds the target again.
 
 **QEMU** (1): the emulator we use. It runs our OS as a virtual PC that starts in a second and can't harm your real computer.
 
 **Real mode** (2): the 16-bit mode every x86 PC starts in, to stay compatible with the Intel 8086 from 1978. Only 1 MiB of memory can be reached, and nothing is protected.
 
+**Recipe** (4): the shell commands under a rule, which make the target. Every recipe line starts with a TAB, and each line runs in its own shell.
+
 **Register** (1): a tiny, very fast storage slot inside the CPU. The CPU does all its work on registers. In real mode, `ax` is a 16-bit register, and its two halves are called `ah` (the high byte) and `al` (the low byte).
+
+**Rule** (4): one entry in a Makefile: a target, then a colon and its prerequisites, then a recipe on the lines below.
 
 **Sector** (2): a 512-byte block of a disk. Disks are read and written a whole sector at a time.
 
@@ -89,6 +103,8 @@ Every new word from the lessons, in simple terms. The number in brackets is the 
 **Stack pointer** (3): the register `sp`, which holds the address of the top of the stack. `push` lowers it by 2 and `pop` raises it by 2.
 
 **String** (3): text stored as bytes in memory, one byte per character. Ours end with a `0` byte, because nothing else marks where the text stops.
+
+**Target** (4): what a rule makes. It's usually a file name, like `boot.bin`. For a phony target, it's the name of a job.
 
 **Terminal** (1): a window where you type commands instead of clicking.
 
