@@ -204,7 +204,7 @@ times 510-($-$$) db 0     ; fill with zeros up to byte 510
 dw 0xAA55                 ; the boot signature: bytes 510 and 511 are 55 AA
 ```
 
-The file in the repo has the same code with longer comments, written while learning. Write your comments in your own words, because they're your notes.
+Lesson 3 changes this file, so the version in the repo looks different now. The code above is how it looks at the end of this lesson. Write your comments in your own words, because they're your notes.
 
 ## Run it
 

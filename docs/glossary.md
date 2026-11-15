@@ -26,7 +26,9 @@ Every new word from the lessons, in simple terms. The number in brackets is the 
 
 **Compiler** (1): a program that turns source code you can read, like C++, into machine code. We use `clang`.
 
-**CRLF and LF** (1): the invisible characters at the end of each line of text. Windows uses two (CRLF, `\r\n`) and Linux uses one (LF, `\n`). Linux tools can break on CRLF.
+**Conditional jump** (3): a jump that only happens when a flag says so. `je` ("jump if equal") jumps only when the zero flag is 1. It's how assembly writes `if` and `while`.
+
+**CRLF and LF** (1): the invisible characters at the end of each line of text. Windows uses two (CRLF, `\r\n`) and Linux uses one (LF, `\n`). Linux tools can break on CRLF. On the BIOS screen, CR (`0x0D`) moves the cursor back to the start of the line and LF (`0x0A`) moves it down one line.
 
 **Debugger** (1): a program that can pause another program, run it one step at a time, and show its memory and registers. We use `gdb`.
 
@@ -38,7 +40,13 @@ Every new word from the lessons, in simple terms. The number in brackets is the 
 
 **Firmware** (1): the small program built into a computer that runs first when you turn it on. BIOS and UEFI are the two kinds on PCs.
 
+**Flags** (3): single bits inside the CPU that describe the result of the last calculation. The zero flag (ZF), for example, is 1 when the result was zero. `cmp` sets the flags, and conditional jumps read them.
+
+**Function** (3): a piece of code you jump to with `call` and come back from with `ret`. `call` saves the return address on the stack, and `ret` takes it back off.
+
 **Hexadecimal** (2): counting in base 16, with the digits 0 to 9 and then A to F. It's written with `0x` in front, like `0x7C00`. Two hex digits make exactly one byte, which is why low-level tools show bytes in hex.
+
+**Include** (3): pasting the text of one file into another while building. In nasm it's `%include "file.asm"`, and in C++ it's `#include`.
 
 **Instruction** (2): one command the CPU understands, like "copy this number into a register" or "jump over there". One line of assembly is one instruction.
 
@@ -56,6 +64,8 @@ Every new word from the lessons, in simple terms. The number in brackets is the 
 
 **Little-endian** (2): storing a number with its lowest byte first. x86 CPUs work this way, so the number `0xAA55` is stored as the bytes `55 AA`.
 
+**Local label** (3): a label that starts with a dot, like `.loop`. It belongs to the normal label above it, so nasm reads `.loop` under `print:` as `print.loop`. Two functions can each have their own `.loop`.
+
 **Machine code** (1): the bytes a CPU actually runs. Every other language gets turned into this in the end.
 
 **Object file** (1): the output of compiling or assembling one source file, ending in `.o`. It holds machine code, plus notes about what it still needs from other files.
@@ -71,6 +81,14 @@ Every new word from the lessons, in simple terms. The number in brackets is the 
 **Register** (1): a tiny, very fast storage slot inside the CPU. The CPU does all its work on registers. In real mode, `ax` is a 16-bit register, and its two halves are called `ah` (the high byte) and `al` (the low byte).
 
 **Sector** (2): a 512-byte block of a disk. Disks are read and written a whole sector at a time.
+
+**Segment register** (3): a register that holds the "base" part of an address in real mode. The CPU builds an address as segment × 16 + offset, so `ds:si` means `ds × 16 + si`. `ds` is used for data and `ss` for the stack.
+
+**Stack** (3): a part of memory used like a pile of plates. `push` puts a value on top and `pop` takes the top value off, last in, first out. On x86 it grows down, toward lower addresses.
+
+**Stack pointer** (3): the register `sp`, which holds the address of the top of the stack. `push` lowers it by 2 and `pop` raises it by 2.
+
+**String** (3): text stored as bytes in memory, one byte per character. Ours end with a `0` byte, because nothing else marks where the text stops.
 
 **Terminal** (1): a window where you type commands instead of clicking.
 

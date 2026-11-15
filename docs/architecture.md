@@ -35,7 +35,8 @@ os/
 ├── .vscode/
 │   └── settings.json        editor settings: new files get Unix line endings
 ├── warmup/                  the first lessons only, not part of the OS
-│   └── boot.asm             the 512-byte boot sector: prints A, then stops
+│   ├── boot.asm             the 512-byte boot sector: sets up a stack, prints a string, stops
+│   └── print.asm            print a string that ends with 0, using the BIOS
 └── docs/
     ├── README.md            start here: how the lessons work
     ├── roadmap.md           every planned lesson
@@ -43,7 +44,8 @@ os/
     ├── glossary.md          every new word, in simple terms
     └── lessons/
         ├── 01-setup.md      lesson 1: setting up the tools
-        └── 02-first-boot-sector.md   lesson 2: the first boot sector
+        ├── 02-first-boot-sector.md   lesson 2: the first boot sector
+        └── 03-strings-loops-stack.md lesson 3: strings, loops and the stack
 ```
 
 ## Planned files
@@ -55,8 +57,7 @@ os/
 ├── make/                             the Makefile split into parts once it grows:   (~L26)
 │                                     flags.mk kernel.mk user.mk image.mk run.mk
 ├── warmup/                           the first lessons only, not part of the OS
-│   ├── Makefile                      build and run the boot sector                  (L04)
-│   └── print.asm                     print a string using the BIOS                  (L03)
+│   └── Makefile                      build and run the boot sector                  (L04)
 ├── third_party/                      other people's code, each with its license
 │   ├── limine/limine.h               how we ask Limine for things                   (L06)
 │   └── font/                         a bitmap font with an MIT-compatible license   (L09)
