@@ -29,7 +29,7 @@ A few rules keep the code easy to read:
 os/
 ├── README.md                what this project is, and how to build it
 ├── LICENSE                  the MIT license
-├── Makefile                 build recipes (empty until lesson 5)
+├── Makefile                 build the kernel: find every .cpp, compile, link; and clean
 ├── .gitignore               files git leaves out: the build folder
 ├── .gitattributes           store text files with Unix line endings
 ├── .vscode/
@@ -38,6 +38,11 @@ os/
 │   ├── Makefile             build, run and clean the boot sector
 │   ├── boot.asm             the 512-byte boot sector: sets up a stack, prints a string, stops
 │   └── print.asm            print a string that ends with 0, using the BIOS
+├── shared/                  headers both the kernel and programs use
+│   └── types.hpp            u8 u16 u32 u64 usize, with size checks
+├── kernel/
+│   ├── main.cpp             kmain(): where the kernel starts; for now it only sleeps
+│   └── linker.ld            the floor plan: where the kernel sits in memory
 └── docs/
     ├── README.md            start here: how the lessons work
     ├── roadmap.md           every planned lesson
@@ -47,7 +52,8 @@ os/
         ├── 01-setup.md      lesson 1: setting up the tools
         ├── 02-first-boot-sector.md   lesson 2: the first boot sector
         ├── 03-strings-loops-stack.md lesson 3: strings, loops and the stack
-        └── 04-first-makefile.md      lesson 4: the first Makefile
+        ├── 04-first-makefile.md      lesson 4: the first Makefile
+        └── 05-cpp-with-no-os.md      lesson 5: C++ with no OS underneath
 ```
 
 ## Planned files
@@ -62,12 +68,9 @@ os/
 │   ├── limine/limine.h               how we ask Limine for things                   (L06)
 │   └── font/                         a bitmap font with an MIT-compatible license   (L09)
 ├── shared/                           headers both the kernel and programs use
-│   ├── types.hpp                     u8 u16 u32 u64 usize                           (L05)
 │   ├── syscall_numbers.hpp           the number of each system call                 (L24)
 │   └── errors.hpp                    error codes                                    (L24)
 ├── kernel/
-│   ├── main.cpp                      kmain(): starts every part in order            (L05)
-│   ├── linker.ld                     where the kernel sits in memory                (L05)
 │   ├── boot/
 │   │   ├── limine.conf               boot menu, and the files Limine loads          (L06)
 │   │   └── requests.hpp/.cpp         ask Limine for the screen, memory map, files   (L06)

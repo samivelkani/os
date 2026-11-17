@@ -21,7 +21,7 @@ A C++ kernel, loaded by the Limine bootloader, that can draw and write text.
 
 | # | Lesson | What you'll see | Status |
 |---|---|---|---|
-| 5 | C++ with no OS underneath | `kernel.elf` builds | |
+| 5 | [C++ with no OS underneath](lessons/05-cpp-with-no-os.md) | `kernel.elf` builds | done |
 | 6 | Booting with Limine | The screen fills with one color, so our code is running | |
 | 7 | The serial port | "Hello" appears in the Ubuntu terminal | |
 | 8 | Drawing pixels | Rectangles on the screen | |

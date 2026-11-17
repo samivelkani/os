@@ -17,6 +17,7 @@ Every lesson ends with something you can see: a letter on the screen, a line in 
 | Section | What's in it |
 |---|---|
 | Goal | One sentence: what the lesson builds |
+| In short | The whole lesson in a few simple sentences and one picture |
 | What you'll see | The result, when everything works |
 | New words | Short meanings of the terms the lesson introduces |
 | The idea | How it works, in plain words, before any code |
@@ -26,7 +27,7 @@ Every lesson ends with something you can see: a letter on the screen, a line in 
 | Common problems | Errors you might hit, and how to fix them |
 | Try this | Small changes to make, and what to expect |
 
-Lesson 1 is only setup, so its "Build it" section is called "Set it up".
+Lesson 1 is only setup, so its "Build it" section is called "Set it up". "In short" starts in lesson 5.
 
 ## Lessons
 
@@ -36,6 +37,7 @@ Lesson 1 is only setup, so its "Build it" section is called "Set it up".
 | 2 | [The first boot sector](lessons/02-first-boot-sector.md) | done |
 | 3 | [Strings, loops and the stack](lessons/03-strings-loops-stack.md) | done |
 | 4 | [The first Makefile](lessons/04-first-makefile.md) | done |
+| 5 | [C++ with no OS underneath](lessons/05-cpp-with-no-os.md) | done |
 
 The [roadmap](roadmap.md) shows every planned lesson. Each one appears here once it's written.
 

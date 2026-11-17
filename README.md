@@ -32,7 +32,7 @@ Version 1.0 is done when:
 
 ## Status
 
-**Lesson 4 of 38 is done:** a 512-byte boot sector, written in assembly, prints a sentence on the screen with a loop, a function and its own stack, and one command, `make run`, builds it and starts it in QEMU. The real kernel starts in lesson 5.
+**Lesson 5 of 38 is done:** the warm-up boot sector prints a sentence on the screen, and the first piece of the real kernel, written in C++ with no operating system underneath, builds into `kernel.elf` with one command, `make`. In lesson 6, the Limine bootloader starts it for the first time.
 
 The [roadmap](docs/roadmap.md) lists every lesson and what each one adds.
 
