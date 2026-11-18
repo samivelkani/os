@@ -38,6 +38,7 @@ Lesson 1 is only setup, so its "Build it" section is called "Set it up". "In sho
 | 3 | [Strings, loops and the stack](lessons/03-strings-loops-stack.md) | done |
 | 4 | [The first Makefile](lessons/04-first-makefile.md) | done |
 | 5 | [C++ with no OS underneath](lessons/05-cpp-with-no-os.md) | done |
+| 6 | [Booting with Limine](lessons/06-booting-with-limine.md) | done |
 
 The [roadmap](roadmap.md) shows every planned lesson. Each one appears here once it's written.
 

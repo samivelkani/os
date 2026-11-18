@@ -4,13 +4,19 @@ Every new word from the lessons, in simple terms. The number in brackets is the 
 
 **Address** (2): a position in memory. Memory is one long row of bytes, and an address says which byte you mean, like an index into an array.
 
+**Anonymous namespace** (6): `namespace { ... }` with no name. Everything inside it is private to its `.cpp` file, like something a TypeScript file doesn't export.
+
 **ASCII** (2): an old table that gives every English letter, digit and symbol a number. `A` is `0x41` (65).
 
 **Assembler** (1): a program that turns assembly language into machine code. We use `nasm`.
 
 **Assembly language** (1): a way to write machine code with short names instead of numbers. `hlt` means "stop the CPU until something happens", and the assembler turns it into the single byte `F4`.
 
+**Attribute** (6): an extra instruction for the compiler, written as `__attribute__((...))`. `used` means "keep this even if nothing seems to read it", and `section("...")` picks the ELF section it goes in.
+
 **Automatic variable** (4): a short name that make fills in for each rule. `$@` is the rule's target, `$<` is its first prerequisite, and `$^` is all of its prerequisites.
+
+**Base revision** (6): the version of Limine's rules a kernel says it follows, like "form version 6" printed at the top of a form. If Limine understands it, it changes the number to 0.
 
 **Binary file** (1): a file that isn't text, like a picture or a program. Its bytes must be kept exactly as they are.
 
@@ -24,7 +30,9 @@ Every new word from the lessons, in simple terms. The number in brackets is the 
 
 **Boot signature** (2): the two bytes `55 AA` at the very end of a boot sector. Without them, the BIOS won't boot from the disk.
 
-**Bootloader** (1): a small program that the firmware starts. It loads the kernel into memory and jumps to it. We'll use one called Limine.
+**Bootloader** (1): a small program that the firmware starts. It loads the kernel into memory and jumps to it. We use one called Limine, from lesson 6.
+
+**Cast** (6): telling the compiler to look at a value as a different type, like `as` in TypeScript. `static_cast<u8*>(p)` and `reinterpret_cast<u32*>(p)` are two kinds. The second one means "trust me, I know what's at this address".
 
 **Compiler** (1): a program that turns source code you can read, like C++, into machine code. We use `clang`.
 
@@ -53,6 +61,8 @@ Every new word from the lessons, in simple terms. The number in brackets is the 
 **Firmware** (1): the small program built into a computer that runs first when you turn it on. BIOS and UEFI are the two kinds on PCs.
 
 **Flags** (3): single bits inside the CPU that describe the result of the last calculation. The zero flag (ZF), for example, is 1 when the result was zero. `cmp` sets the flags, and conditional jumps read them.
+
+**Framebuffer** (6): the part of memory that the screen shows, row after row. Each pixel is 4 bytes in it. Write a color number there, and the pixel changes on the screen.
 
 **Freestanding and hosted** (5): hosted code runs on top of an operating system and can ask it for things, like printing or memory. Freestanding code runs with nothing underneath, so it has no standard library. A kernel is freestanding.
 
@@ -96,9 +106,15 @@ Every new word from the lessons, in simple terms. The number in brackets is the 
 
 **Page** (5): a block of memory, 4 KiB (4096 bytes) on x86-64. Memory permissions, like "read only", are set one whole page at a time.
 
+**Paging** (6): the CPU's address map. Code uses an address like `0xffffffff80000000`, and the CPU looks it up in a table to find the real spot in RAM, like a phone turning a contact name into a number. Limine sets it up for us. Lesson 17 covers it properly.
+
 **Pattern rule** (5): a make rule with `%` in it, like `build/%.o: %.cpp`. The `%` stands for the same text on both sides, so one rule works for every file.
 
 **Phony target** (4): a target that names a job instead of a file, like `run` or `clean`. Listing it after `.PHONY:` tells make not to look for a file with that name.
+
+**Pitch** (6): how many bytes one row of the screen takes in memory, including any extra bytes the hardware adds at the end. To get to the next row, jump `pitch` bytes, not `width × 4`.
+
+**Pixel** (6): one dot on the screen. In our framebuffer, one pixel is a 32-bit color number like `0x00ff0000` (red), written the same way as a CSS color.
 
 **Preprocessor** (1): the first step inside the compiler. It removes comments and copies in the files named by `#include`.
 
@@ -111,6 +127,8 @@ Every new word from the lessons, in simple terms. The number in brackets is the 
 **Recipe** (4): the shell commands under a rule, which make the target. Every recipe line starts with a TAB, and each line runs in its own shell.
 
 **Register** (1): a tiny, very fast storage slot inside the CPU. The CPU does all its work on registers. In real mode, `ax` is a 16-bit register, and its two halves are called `ah` (the high byte) and `al` (the low byte).
+
+**Request and response** (6): a request is a note the kernel leaves for Limine inside its own file, like "please give me a screen". Limine reads it before starting the kernel and writes the address of its answer, the response, into the note.
 
 **Rule** (4): one entry in a Makefile: a target, then a colon and its prerequisites, then a recipe on the lines below.
 
@@ -135,5 +153,7 @@ Every new word from the lessons, in simple terms. The number in brackets is the 
 **Type alias** (5): a second name for a type that already exists. `using u64 = unsigned long;` in C++ works like `type UserId = string;` in TypeScript.
 
 **UEFI** (1): the newer kind of PC firmware, which has replaced the BIOS on most modern computers.
+
+**Volatile** (6): a C++ word that tells the compiler "something outside this code can change this memory, so always read it for real". We use it for Limine's notes, because Limine writes the answers.
 
 **WSL** (1): Windows Subsystem for Linux. It runs a real Linux inside Windows.

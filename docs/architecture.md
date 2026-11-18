@@ -29,7 +29,7 @@ A few rules keep the code easy to read:
 os/
 ├── README.md                what this project is, and how to build it
 ├── LICENSE                  the MIT license
-├── Makefile                 build the kernel: find every .cpp, compile, link; and clean
+├── Makefile                 build the kernel, download Limine, pack os.iso, run it in QEMU; and clean
 ├── .gitignore               files git leaves out: the build folder
 ├── .gitattributes           store text files with Unix line endings
 ├── .vscode/
@@ -38,11 +38,20 @@ os/
 │   ├── Makefile             build, run and clean the boot sector
 │   ├── boot.asm             the 512-byte boot sector: sets up a stack, prints a string, stops
 │   └── print.asm            print a string that ends with 0, using the BIOS
+├── third_party/             code we didn't write, each piece with its license
+│   └── limine/
+│       ├── limine.h         Limine's notes: the request and response structs
+│       └── LICENSE          limine.h's license (0BSD)
 ├── shared/                  headers both the kernel and programs use
 │   └── types.hpp            u8 u16 u32 u64 usize, with size checks
 ├── kernel/
-│   ├── main.cpp             kmain(): where the kernel starts; for now it only sleeps
-│   └── linker.ld            the floor plan: where the kernel sits in memory
+│   ├── main.cpp             kmain(): where the kernel starts; paints the screen one color
+│   ├── linker.ld            the floor plan: where the kernel sits in memory, Limine's notes first
+│   ├── boot/
+│   │   ├── limine.conf      Limine's menu, and where the kernel is on the disk
+│   │   └── requests.hpp/.cpp   our notes for Limine, and two functions to read its answers
+│   └── arch/x86_64/         only code that's specific to this CPU
+│       └── cpu.hpp          halt_forever(): stop the CPU for good
 └── docs/
     ├── README.md            start here: how the lessons work
     ├── roadmap.md           every planned lesson
@@ -53,29 +62,27 @@ os/
         ├── 02-first-boot-sector.md   lesson 2: the first boot sector
         ├── 03-strings-loops-stack.md lesson 3: strings, loops and the stack
         ├── 04-first-makefile.md      lesson 4: the first Makefile
-        └── 05-cpp-with-no-os.md      lesson 5: C++ with no OS underneath
+        ├── 05-cpp-with-no-os.md      lesson 5: C++ with no OS underneath
+        └── 06-booting-with-limine.md lesson 6: booting with Limine
 ```
 
 ## Planned files
 
-Nothing below exists yet. `L05` means the file arrives in lesson 5. When a file is created, it moves up into the section above. The lesson numbers are a guide, and they can shift as the work goes.
+Nothing below exists yet. `L05` means the file arrives in lesson 5. When a file is created, it moves up into the section above. A line that says "more" adds to a file that already exists. The lesson numbers are a guide, and they can shift as the work goes.
 
 ```
 os/
 ├── make/                             the Makefile split into parts once it grows:   (~L26)
 │                                     flags.mk kernel.mk user.mk image.mk run.mk
 ├── third_party/                      other people's code, each with its license
-│   ├── limine/limine.h               how we ask Limine for things                   (L06)
 │   └── font/                         a bitmap font with an MIT-compatible license   (L09)
 ├── shared/                           headers both the kernel and programs use
 │   ├── syscall_numbers.hpp           the number of each system call                 (L24)
 │   └── errors.hpp                    error codes                                    (L24)
 ├── kernel/
-│   ├── boot/
-│   │   ├── limine.conf               boot menu, and the files Limine loads          (L06)
-│   │   └── requests.hpp/.cpp         ask Limine for the screen, memory map, files   (L06)
+│   ├── boot/requests.hpp/.cpp        more requests: the memory map, files           (L10, L27)
 │   ├── arch/x86_64/                  only code that's specific to this CPU
-│   │   ├── cpu.hpp                   halt, interrupts on/off, read cr2/cr3          (L06)
+│   │   ├── cpu.hpp                   more helpers: interrupts on/off, read cr2/cr3  (L13, L17)
 │   │   ├── io.hpp                    inb/outb: talk to I/O ports                    (L07)
 │   │   ├── gdt.hpp/.cpp, gdt_load.asm   segment table: kernel and user modes        (L12)
 │   │   ├── idt.hpp/.cpp              interrupt number → handler                     (L13)
@@ -98,7 +105,7 @@ os/
 │   │   ├── keyboard.hpp/.cpp, keymap.cpp   PS/2 keyboard, key code → letter         (L15)
 │   │   └── rtc.hpp/.cpp              clock chip: date and time                      (L37)
 │   ├── lib/                          our own small standard library (no std::)
-│   │   ├── string.hpp/.cpp           memcpy memset strlen strcmp                    (L06)
+│   │   ├── string.hpp/.cpp           memcpy memset strlen strcmp                    (L09)
 │   │   ├── print.hpp/.cpp            kprintf                                        (L10)
 │   │   ├── log.hpp/.cpp              log to the serial port and the screen          (L10)
 │   │   ├── panic.hpp/.cpp, assert.hpp   stop and show the error                     (L13)

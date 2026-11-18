@@ -32,7 +32,7 @@ Version 1.0 is done when:
 
 ## Status
 
-**Lesson 5 of 38 is done:** the warm-up boot sector prints a sentence on the screen, and the first piece of the real kernel, written in C++ with no operating system underneath, builds into `kernel.elf` with one command, `make`. In lesson 6, the Limine bootloader starts it for the first time.
+**Lesson 6 of 38 is done:** the real kernel boots. `make run` packs it with the Limine bootloader into a bootable `.iso` file and starts it in QEMU, with BIOS or UEFI. The kernel asks Limine for the screen and fills it with one color. In lesson 7, it learns to send text to the Ubuntu terminal through the serial port.
 
 The [roadmap](docs/roadmap.md) lists every lesson and what each one adds.
 
@@ -74,6 +74,7 @@ To **build** it:
 | `nasm` | turns assembly into machine code |
 | `make` | runs the build steps in the right order |
 | `xorriso` | packs everything into a bootable `.iso` file |
+| `git` | downloads the Limine bootloader during the first build |
 | `qemu` | a whole PC in software, to run the OS |
 | `gdb` | a debugger, to pause the OS and look inside |
 
@@ -81,7 +82,7 @@ On Ubuntu, one command installs all of them:
 
 ```bash
 sudo apt update
-sudo apt install clang lld nasm make xorriso qemu-system-x86 qemu-system-gui gdb
+sudo apt install clang lld nasm make xorriso git qemu-system-x86 qemu-system-gui gdb
 ```
 
 To **run** it, you only need QEMU. The OS is made for a 64-bit Intel or AMD PC with one CPU core, at least 64 MiB of RAM, and BIOS or UEFI firmware. Running on real hardware isn't a goal for now.
@@ -92,9 +93,10 @@ These commands arrive as the lessons add them:
 
 | Command | What it does | From lesson |
 |---|---|---|
-| `make` | build everything | 5 |
+| `make` | build the kernel | 5 |
 | `make clean` | delete everything that was built | 5 |
-| `make run` | build, then start the OS in QEMU | 6 |
+| `make iso` | build, then pack the kernel and Limine into `build/os.iso` | 6 |
+| `make run` | build, pack, then start the OS in QEMU | 6 |
 | `make debug` | start QEMU paused, waiting for GDB | 11 |
 
 The warm-up boot sector from lessons 2 to 4 has its own small Makefile. From the project folder, `make -C warmup run` builds it and starts it.

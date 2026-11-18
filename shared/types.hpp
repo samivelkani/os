@@ -1,13 +1,3 @@
-/*
- *  This files determine how the types work
- *  We will use them alongside when building the kernel
- *  We do not rely on C++ data types as it is dependent on system architecture
- *  The number after u refers to bits (the number of bits this type can hold)
- *  We have fixed data types that are defined from C++ data types with using keyword
- *  We perform a check at compiler time via static_assert() with sizeof() as condition
- *  If the size of data type is out of range, an error will be thrown at compiler time
- */
-
 #ifndef DATA_TYPE
 #define DATA_TYPE
 
@@ -23,4 +13,4 @@ static_assert(sizeof(u32) == 4, "u32 must be 4 bytes long");
 static_assert(sizeof(u64) == 8, "u64 must be 8 bytes long");
 static_assert(sizeof(usize) == sizeof(void*), "usize must be as wide as a pointer");
 
-#endif // DATA_TYPE
+#endif

@@ -479,7 +479,7 @@ $ make
 - **Two segments start in the same page** (the second address doesn't end in `000`): add `. = ALIGN(4096);` before the section that starts the new segment.
 - **`warning: cannot find entry symbol kmain; not setting start address`**: the linker can't find a function with the plain name `kmain`. Check that it has `extern "C"` and is spelled the same as in `ENTRY(kmain)`. This is only a warning, so the build still finishes, with an entry point of `0x0`. Check it with `readelf -h`.
 - **`undefined symbol: f()`** from the linker: the code calls a function that no file defines. The compiler doesn't mind, only the linker does, because only the linker sees all the files together.
-- **`fatal error: 'iostream' file not found`**: the standard library doesn't exist here. If you need something like it, we write our own (lesson 6 brings the first pieces).
+- **`fatal error: 'iostream' file not found`**: the standard library doesn't exist here. If you need something like it, we write our own (lesson 9 brings the first pieces).
 - **`error: cannot use 'throw' with exceptions disabled`**: exceptions are off on purpose. Return an error value instead.
 - **`error: unknown type name 'u64'`**: the file is missing `#include "../shared/types.hpp"`.
 - **`warning: extra tokens at end of #include directive`**: there's a `;` after the `#include` line. `#include` lines don't end with `;`.
